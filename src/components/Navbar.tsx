@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { Menu, X } from "lucide-react";
 import { Button } from "./ui/button";
+import { motion } from "framer-motion";
 import logo from "@/assets/udohlols-logo.png";
 
 const Navbar = () => {
@@ -41,16 +42,40 @@ const Navbar = () => {
     >
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between h-20">
-          <div className="flex items-center gap-3">
-            <img 
+          <motion.div 
+            className="flex items-center gap-2 md:gap-3"
+            initial={{ opacity: 0, x: -20 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.6 }}
+          >
+            <motion.img 
               src={logo} 
               alt="UDOHLOLS LIMITED logo" 
-              className="h-10 w-auto md:h-12 object-contain"
+              className="h-8 w-auto sm:h-10 md:h-12 object-contain"
+              whileHover={{ scale: 1.05, rotate: [0, -5, 5, 0] }}
+              transition={{ duration: 0.3 }}
             />
-            <span className="text-lg md:text-xl font-bold text-primary-foreground hidden sm:inline">
-              UDOHLOLS <span className="text-accent">LIMITED</span>
-            </span>
-          </div>
+            <motion.span 
+              className="text-sm sm:text-lg md:text-xl font-bold text-primary-foreground"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.3, duration: 0.6 }}
+            >
+              UDOHLOLS <motion.span 
+                className="text-accent"
+                animate={{ 
+                  textShadow: [
+                    "0 0 0px rgba(218, 165, 32, 0)",
+                    "0 0 8px rgba(218, 165, 32, 0.5)",
+                    "0 0 0px rgba(218, 165, 32, 0)"
+                  ]
+                }}
+                transition={{ duration: 2, repeat: Infinity, repeatDelay: 1 }}
+              >
+                LIMITED
+              </motion.span>
+            </motion.span>
+          </motion.div>
 
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center gap-8">
