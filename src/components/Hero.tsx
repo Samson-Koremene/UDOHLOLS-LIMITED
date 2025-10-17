@@ -1,9 +1,12 @@
-import { motion } from "framer-motion";
+import { motion, useScroll, useTransform } from "framer-motion";
 import { Button } from "./ui/button";
 import { ChevronDown } from "lucide-react";
 import heroImage from "@/assets/hero-oil-rig.jpg";
 
 const Hero = () => {
+  const { scrollY } = useScroll();
+  const y = useTransform(scrollY, [0, 500], [0, 150]);
+
   const scrollToSection = (id: string) => {
     const element = document.getElementById(id);
     if (element) {
@@ -13,15 +16,18 @@ const Hero = () => {
 
   return (
     <section id="hero" className="relative min-h-screen flex items-center justify-center overflow-hidden">
-      {/* Background Image with Overlay */}
-      <div className="absolute inset-0 z-0">
+      {/* Background Image with Overlay - Parallax Effect */}
+      <motion.div 
+        className="absolute inset-0 z-0"
+        style={{ y }}
+      >
         <img 
           src={heroImage} 
           alt="Oil rig at sunset" 
-          className="w-full h-full object-cover"
+          className="w-full h-[110%] object-cover"
         />
         <div className="absolute inset-0 bg-[var(--gradient-hero)]" />
-      </div>
+      </motion.div>
 
       {/* Content */}
       <div className="container mx-auto px-4 z-10 text-center">
