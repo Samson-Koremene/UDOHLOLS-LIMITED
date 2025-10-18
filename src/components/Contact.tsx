@@ -123,10 +123,6 @@ const Contact = () => {
               </div>
             ))}
 
-            <div className="bg-primary/5 p-6 rounded-lg border border-accent/20">
-              <h3 className="font-semibold text-foreground mb-2">Branch Office</h3>
-              <p className="text-muted-foreground">United Kingdom</p>
-            </div>
           </motion.div>
         </div>
       </div>

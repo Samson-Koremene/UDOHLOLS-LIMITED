@@ -41,9 +41,9 @@ const About = () => {
           <div className="w-24 h-1 bg-accent mx-auto mb-8" />
           <p className="text-lg text-muted-foreground max-w-4xl mx-auto leading-relaxed">
             Udohlols Limited is an indigenous Nigerian Oil and Gas, Marine Company dedicated to delivering superior 
-            performance and results for Oil and Gas, Marine Companies in Nigeria and across the world. Based in Nigeria 
-            with a branch office in the United Kingdom, we are a 100% Nigerian content company totally committed to 
-            delivering the best possible services with client relationships based on trust.
+            performance and results for Oil and Gas, Marine Companies in Nigeria and across the world. Based in Nigeria, 
+            we are a 100% Nigerian content company totally committed to delivering the best possible services with 
+            client relationships based on trust.
           </p>
         </motion.div>
 
