@@ -16,12 +16,12 @@ const Services = () => {
     },
     {
       icon: Wrench,
-      title: "CONSTRUCTION SERVICE",
+      title: "CONSTRUCTION SERVICES",
       description: "We deliver safe and efficient construction services across Africa's oil, gas, and energy sectors."
     },
     {
       icon: Ship,
-      title: "MARINE SERVICE",
+      title: "MARINE SERVICES",
       description: "Full-service marine logistics, offshore support, and maritime operations for the oil and gas industry."
     },
     {

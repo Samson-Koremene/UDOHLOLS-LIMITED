@@ -45,10 +45,11 @@ const Footer = () => {
           <div>
             <h4 className="font-semibold mb-4">Services</h4>
             <ul className="space-y-2 text-sm text-primary-foreground/80">
-              <li>Exploration & Drilling</li>
-              <li>Energy Distribution</li>
+              <li>Geotechnical/Geophysical/Geophysical Services</li>
+              <li>Construction Services</li>
               <li>Marine Services</li>
-              <li>Logistics & Supply</li>
+              <li>Operation and Maintainance Services</li>
+              <li>Technical Consultancy Services</li>
             </ul>
           </div>
 
