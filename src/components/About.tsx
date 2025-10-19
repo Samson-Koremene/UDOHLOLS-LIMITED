@@ -108,7 +108,7 @@ Our expertise combines deep technical knowledge, advanced technology, and strate
             </div>
 
             <div>
-              <h5 className="text-lg font-semibold text-foreground mb-2">5. Human Capital & Local Content Development</h5>
+              <h5 className="text-lg font-semibold text-foreground mb-2">4. Human Capital & Local Content Development</h5>
               <ul className="list-disc pl-5 space-y-2">
                 <li>Train and certify 2,000+ local engineers, marine operators, and exploration specialists by 2030.</li>
                 <li>Launch the Udohlols Academy of Energy, Engineering & Marine Studies to drive local talent development.</li>
@@ -118,7 +118,7 @@ Our expertise combines deep technical knowledge, advanced technology, and strate
             </div>
 
             <div>
-              <h5 className="text-lg font-semibold text-foreground mb-2">6. Operational Excellence & Safety</h5>
+              <h5 className="text-lg font-semibold text-foreground mb-2">5. Operational Excellence & Safety</h5>
               <ul className="list-disc pl-5 space-y-2">
                 <li>Enforce a zero-incident, zero-spill policy across all oilfield and marine operations.</li>
                 <li>Implement real-time digital HSE monitoring systems across vessels and rigs.</li>
@@ -128,7 +128,7 @@ Our expertise combines deep technical knowledge, advanced technology, and strate
             </div>
 
             <div>
-              <h5 className="text-lg font-semibold text-foreground mb-2">7. Regional Expansion & Strategic Partnerships</h5>
+              <h5 className="text-lg font-semibold text-foreground mb-2">6. Regional Expansion & Strategic Partnerships</h5>
               <ul className="list-disc pl-5 space-y-2">
                 <li>Operate in at least 15 African countries by 2030 through joint ventures and partnerships with IOCs, NOCs, and marine operators.</li>
                 <li>Develop regional logistics bases in West, Central, and East Africa.</li>
@@ -138,7 +138,7 @@ Our expertise combines deep technical knowledge, advanced technology, and strate
             </div>
 
             <div>
-              <h5 className="text-lg font-semibold text-foreground mb-2">8. Financial Growth & Innovation</h5>
+              <h5 className="text-lg font-semibold text-foreground mb-2">7. Financial Growth & Innovation</h5>
               <ul className="list-disc pl-5 space-y-2">
                 <li>Create a Marine and Exploration Investment Fund for fleet expansion, asset acquisition, and technology R&amp;D.</li>
                 <li>Implement blockchain-enabled procurement and supply chain transparency for investor confidence.</li>
