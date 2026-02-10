@@ -1,12 +1,12 @@
 import { motion } from "framer-motion";
 import { useInView } from "framer-motion";
 import { useRef } from "react";
-import conductorCasingImage from "@/assets/install.png";
-import soilBoringImage from "@/assets/soil.png";
-import geotechnicalImage from "@/assets/geotechnical.png";
-import geotechnicalCreekImage from "@/assets/geo.png";
-import nonDestructiveImage from "@/assets/non.png";
-import piezoconeImage from "@/assets/10ton.png";
+import conductorCasingImage from "@/assets/optimized/install.webp";
+import soilBoringImage from "@/assets/optimized/soil.webp";
+import geotechnicalImage from "@/assets/optimized/geotechnical.webp";
+import geotechnicalCreekImage from "@/assets/optimized/geo.webp";
+import nonDestructiveImage from "@/assets/optimized/non.webp";
+import piezoconeImage from "@/assets/optimized/10ton.webp";
 
 const Projects = () => {
   const ref = useRef(null);
@@ -64,30 +64,42 @@ const Projects = () => {
           </p>
         </motion.div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-4 sm:gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
           {projects.map((project, index) => (
             <motion.div
               key={project.title}
               initial={{ opacity: 0, y: 30 }}
               animate={isInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.6, delay: index * 0.2 }}
-              className="group relative overflow-hidden rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300"
+              transition={{ duration: 0.6, delay: index * 0.1 }}
+              className="group relative overflow-hidden rounded-lg shadow-lg hover:shadow-2xl transition-all duration-300 cursor-pointer"
+              onClick={() => {
+                // Mobile tap to reveal description
+                if ('ontouchstart' in window) {
+                  const element = document.getElementById(`project-${index}`);
+                  element?.classList.toggle('show-overlay');
+                }
+              }}
             >
               <div className="aspect-[4/3] overflow-hidden">
-                <img 
-                  src={project.image} 
+                <img
+                  src={project.image}
                   alt={project.title}
-                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                  loading="lazy"
+                  decoding="async"
                 />
               </div>
-              <div className="absolute inset-0 bg-gradient-to-t from-primary via-primary/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                <div className="absolute bottom-0 left-0 right-0 p-4 sm:p-6 text-primary-foreground">
-                  <h3 className="text-lg sm:text-xl font-bold mb-2">{project.title}</h3>
-                  <p className="text-xs sm:text-sm text-primary-foreground/90 leading-relaxed">{project.description}</p>
+              <div
+                id={`project-${index}`}
+                className="absolute inset-0 bg-gradient-to-t from-primary via-primary/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 [.show-overlay_&]:opacity-100"
+              >
+                <div className="absolute bottom-0 left-0 right-0 p-5 sm:p-6 text-primary-foreground">
+                  <h3 className="text-xl sm:text-2xl font-bold mb-3">{project.title}</h3>
+                  <p className="text-sm sm:text-base text-primary-foreground/95 leading-relaxed">{project.description}</p>
                 </div>
               </div>
-              <div className="bg-card p-3 sm:p-4 border-t border-border">
-                <h3 className="text-sm sm:text-lg font-semibold text-foreground line-clamp-2">{project.title}</h3>
+              <div className="bg-card p-4 sm:p-5 border-t border-border">
+                <h3 className="text-base sm:text-lg font-semibold text-foreground line-clamp-2">{project.title}</h3>
               </div>
             </motion.div>
           ))}

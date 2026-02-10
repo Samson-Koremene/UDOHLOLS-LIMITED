@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { Menu, X } from "lucide-react";
 import { Button } from "./ui/button";
 import { motion } from "framer-motion";
-import logo from "@/assets/udohlols-logo.png";
+import logo from "@/assets/optimized/udohlols-logo.webp";
 
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -34,36 +34,38 @@ const Navbar = () => {
 
   return (
     <nav
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        isScrolled
-          ? "bg-primary/95 backdrop-blur-md shadow-[var(--shadow-navy)]"
-          : "bg-transparent"
-      }`}
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${isScrolled
+        ? "bg-primary/95 backdrop-blur-md shadow-[var(--shadow-navy)]"
+        : "bg-transparent"
+        }`}
     >
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between h-20">
-          <motion.div 
+          <motion.div
             className="flex items-center gap-2 md:gap-3"
             initial={{ opacity: 0, x: -20 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.6 }}
           >
-            <motion.img 
-              src={logo} 
-              alt="UDOHLOLS LIMITED logo" 
+            <motion.img
+              src={logo}
+              alt="UDOHLOLS LIMITED logo"
               className="h-8 w-auto sm:h-10 md:h-12 object-contain"
+              loading="eager"
+              fetchPriority="high"
+              decoding="async"
               whileHover={{ scale: 1.05, rotate: [0, -5, 5, 0] }}
               transition={{ duration: 0.3 }}
             />
-            <motion.span 
+            <motion.span
               className="text-sm sm:text-lg md:text-xl font-bold text-primary-foreground"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 0.3, duration: 0.6 }}
             >
-              UDOHLOLS <motion.span 
+              UDOHLOLS <motion.span
                 className="text-accent"
-                animate={{ 
+                animate={{
                   textShadow: [
                     "0 0 0px rgba(218, 165, 32, 0)",
                     "0 0 8px rgba(218, 165, 32, 0.5)",
@@ -88,8 +90,8 @@ const Navbar = () => {
                 {link.name}
               </button>
             ))}
-            <Button 
-              variant="hero" 
+            <Button
+              variant="hero"
               onClick={() => scrollToSection("contact")}
             >
               Get in Touch
@@ -106,26 +108,40 @@ const Navbar = () => {
         </div>
 
         {/* Mobile Navigation */}
-        {isMobileMenuOpen && (
-          <div className="md:hidden pb-6 animate-fade-in">
-            {navLinks.map((link) => (
-              <button
+        <motion.div
+          initial={false}
+          animate={isMobileMenuOpen ? { height: "auto", opacity: 1 } : { height: 0, opacity: 0 }}
+          transition={{ duration: 0.3, ease: "easeInOut" }}
+          className="md:hidden overflow-hidden"
+        >
+          <div className="pb-6 pt-2">
+            {navLinks.map((link, index) => (
+              <motion.button
                 key={link.id}
+                initial={false}
+                animate={isMobileMenuOpen ? { x: 0, opacity: 1 } : { x: -20, opacity: 0 }}
+                transition={{ duration: 0.3, delay: isMobileMenuOpen ? index * 0.05 : 0 }}
                 onClick={() => scrollToSection(link.id)}
                 className="block w-full text-left py-3 text-primary-foreground hover:text-accent transition-colors font-medium"
               >
                 {link.name}
-              </button>
+              </motion.button>
             ))}
-            <Button 
-              variant="hero" 
-              className="w-full mt-4"
-              onClick={() => scrollToSection("contact")}
+            <motion.div
+              initial={false}
+              animate={isMobileMenuOpen ? { x: 0, opacity: 1 } : { x: -20, opacity: 0 }}
+              transition={{ duration: 0.3, delay: isMobileMenuOpen ? navLinks.length * 0.05 : 0 }}
             >
-              Get in Touch
-            </Button>
+              <Button
+                variant="hero"
+                className="w-full mt-4"
+                onClick={() => scrollToSection("contact")}
+              >
+                Get in Touch
+              </Button>
+            </motion.div>
           </div>
-        )}
+        </motion.div>
       </div>
     </nav>
   );

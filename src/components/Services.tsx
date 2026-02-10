@@ -11,7 +11,8 @@ const Services = () => {
   const services = [
     {
       icon: Drill,
-      title: "GEOTECHNICAL/GEOPHYSICAL/GEODETIC SERVICES",
+      title:
+        "GEOTECHNICAL/GEOPHYSICAL/GEODETIC SERVICES",
       description: "We provide geotechnical, geophysical, and geodetic services including soil testing, ground investigation, and hydrographic surveys."
     },
     {
@@ -26,7 +27,7 @@ const Services = () => {
     },
     {
       icon: Settings,
-      title: "OPERATION AND MAINTAINANCE SERVICES",
+      title: "OPERATION AND MAINTENANCE SERVICES",
       description: "We offer full-scale operations and maintenance services across the oil, gas, marine, and power sectors."
     },
     {
@@ -55,7 +56,7 @@ const Services = () => {
           </p>
         </motion.div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 sm:gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
           {services.map((service, index) => (
             <motion.div
               key={service.title}
@@ -68,7 +69,15 @@ const Services = () => {
                   <div className="w-12 h-12 sm:w-16 sm:h-16 bg-accent/10 rounded-lg flex items-center justify-center mb-3 sm:mb-4">
                     <service.icon className="w-6 h-6 sm:w-8 sm:h-8 text-accent" />
                   </div>
-                  <CardTitle className="text-base sm:text-lg lg:text-xl leading-tight">{service.title}</CardTitle>
+                  <CardTitle className="text-base sm:text-lg lg:text-xl leading-tight">
+                    {service.title === "GEOTECHNICAL/GEOPHYSICAL/GEODETIC SERVICES" ? (
+                      <>
+                        GEOTECHNICAL/<wbr />GEOPHYSICAL/GEODETIC SERVICES
+                      </>
+                    ) : (
+                      service.title
+                    )}
+                  </CardTitle>
                 </CardHeader>
                 <CardContent className="p-4 sm:p-6 pt-0">
                   <CardDescription className="text-muted-foreground text-sm sm:text-base leading-relaxed">
