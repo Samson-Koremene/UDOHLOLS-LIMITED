@@ -1,18 +1,29 @@
-import { motion } from "framer-motion";
-import { useInView } from "framer-motion";
+import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
 import { Drill, Ship, Wrench, Settings, Users } from "lucide-react";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "./ui/card";
 
+const staggerContainer = {
+  hidden: {},
+  visible: { transition: { staggerChildren: 0.12 } }
+};
+
+const cardVariant = {
+  hidden: { opacity: 0, y: 50, rotateX: 10 },
+  visible: {
+    opacity: 1, y: 0, rotateX: 0,
+    transition: { duration: 0.6, ease: "easeOut" as const }
+  }
+};
+
 const Services = () => {
   const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, margin: "-100px" });
+  const isInView = useInView(ref, { once: true, margin: "-80px" });
 
   const services = [
     {
       icon: Drill,
-      title:
-        "GEOTECHNICAL/GEOPHYSICAL/GEODETIC SERVICES",
+      title: "GEOTECHNICAL/GEOPHYSICAL/GEODETIC SERVICES",
       description: "We provide geotechnical, geophysical, and geodetic services including soil testing, ground investigation, and hydrographic surveys."
     },
     {
@@ -56,24 +67,30 @@ const Services = () => {
           </p>
         </motion.div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
-          {services.map((service, index) => (
+        <motion.div
+          variants={staggerContainer}
+          initial="hidden"
+          animate={isInView ? "visible" : "hidden"}
+          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8"
+        >
+          {services.map((service) => (
             <motion.div
               key={service.title}
-              initial={{ opacity: 0, scale: 0.9 }}
-              animate={isInView ? { opacity: 1, scale: 1 } : {}}
-              transition={{ duration: 0.5, delay: index * 0.1 }}
+              variants={cardVariant}
+              whileHover={{ y: -8, transition: { duration: 0.3 } }}
             >
               <Card className="h-full hover:shadow-[var(--shadow-gold)] transition-all duration-300 border-border">
                 <CardHeader className="p-4 sm:p-6">
-                  <div className="w-12 h-12 sm:w-16 sm:h-16 bg-accent/10 rounded-lg flex items-center justify-center mb-3 sm:mb-4">
+                  <motion.div
+                    className="w-12 h-12 sm:w-16 sm:h-16 bg-accent/10 rounded-lg flex items-center justify-center mb-3 sm:mb-4"
+                    whileHover={{ scale: 1.15, rotate: 5 }}
+                    transition={{ type: "spring", stiffness: 300 }}
+                  >
                     <service.icon className="w-6 h-6 sm:w-8 sm:h-8 text-accent" />
-                  </div>
+                  </motion.div>
                   <CardTitle className="text-base sm:text-lg lg:text-xl leading-tight">
                     {service.title === "GEOTECHNICAL/GEOPHYSICAL/GEODETIC SERVICES" ? (
-                      <>
-                        GEOTECHNICAL/<wbr />GEOPHYSICAL/GEODETIC SERVICES
-                      </>
+                      <>GEOTECHNICAL/<wbr />GEOPHYSICAL/GEODETIC SERVICES</>
                     ) : (
                       service.title
                     )}
@@ -87,7 +104,7 @@ const Services = () => {
               </Card>
             </motion.div>
           ))}
-        </div>
+        </motion.div>
       </div>
     </section>
   );
