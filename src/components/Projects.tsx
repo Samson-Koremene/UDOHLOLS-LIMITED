@@ -1,5 +1,4 @@
-import { motion } from "framer-motion";
-import { useInView } from "framer-motion";
+import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
 import conductorCasingImage from "@/assets/optimized/install.webp";
 import soilBoringImage from "@/assets/optimized/soil.webp";
@@ -8,9 +7,22 @@ import geotechnicalCreekImage from "@/assets/optimized/geo.webp";
 import nonDestructiveImage from "@/assets/optimized/non.webp";
 import piezoconeImage from "@/assets/optimized/10ton.webp";
 
+const staggerContainer = {
+  hidden: {},
+  visible: { transition: { staggerChildren: 0.1 } }
+};
+
+const projectVariant = (index: number) => ({
+  hidden: { opacity: 0, x: index % 2 === 0 ? -40 : 40, y: 20 },
+  visible: {
+    opacity: 1, x: 0, y: 0,
+    transition: { duration: 0.7, ease: "easeOut" as const }
+  }
+});
+
 const Projects = () => {
   const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, margin: "-100px" });
+  const isInView = useInView(ref, { once: true, margin: "-80px" });
 
   const projects = [
     {
@@ -64,16 +76,19 @@ const Projects = () => {
           </p>
         </motion.div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
+        <motion.div
+          variants={staggerContainer}
+          initial="hidden"
+          animate={isInView ? "visible" : "hidden"}
+          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8"
+        >
           {projects.map((project, index) => (
             <motion.div
               key={project.title}
-              initial={{ opacity: 0, y: 30 }}
-              animate={isInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.6, delay: index * 0.1 }}
-              className="group relative overflow-hidden rounded-lg shadow-lg hover:shadow-2xl transition-all duration-300 cursor-pointer"
+              variants={projectVariant(index)}
+              whileHover={{ y: -10, transition: { duration: 0.3 } }}
+              className="group relative overflow-hidden rounded-lg shadow-lg hover:shadow-2xl transition-shadow duration-300 cursor-pointer"
               onClick={() => {
-                // Mobile tap to reveal description
                 if ('ontouchstart' in window) {
                   const element = document.getElementById(`project-${index}`);
                   element?.classList.toggle('show-overlay');
@@ -103,7 +118,7 @@ const Projects = () => {
               </div>
             </motion.div>
           ))}
-        </div>
+        </motion.div>
       </div>
     </section>
   );
